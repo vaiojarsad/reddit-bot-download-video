@@ -37,5 +37,5 @@ class ConfigManager:
         return os.environ.get("KAFKA_TOPIC", "reddit-jobs")
 
     @classmethod
-    def get_kafka_bootstrap_servers(cls) -> List[str]:
-        return os.environ.get("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092").split(",")
+    def get_kafka_brokers(cls) -> List[str]:
+        return os.environ.get("KAFKA_BROKERS", "localhost:9092").split(",")

@@ -28,13 +28,14 @@ def main():
 
 
 def process_submission(submission):
+    title = submission.title
     if hasattr(submission, 'crosspost_parent_list') and submission.crosspost_parent_list[0]['is_video']:
         secure_media = submission.crosspost_parent_list[0]['secure_media']
     elif submission.is_video:
         secure_media = submission.secure_media
     else:
         return
-    process_video(secure_media['reddit_video']['fallback_url'])
+    process_video(secure_media['reddit_video']['fallback_url'], title)
 
 
 if __name__ == "__main__":

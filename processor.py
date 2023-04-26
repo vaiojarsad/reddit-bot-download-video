@@ -1,19 +1,17 @@
 import json
 import os
-import urllib.parse
 
 from kafka import KafkaProducer
 
 from config import ConfigManager
+from util import create_valid_file_name
 
 
-def process_video(video_url: str):
-    url_parts = urllib.parse.urlparse(video_url)
-    path_parts = url_parts[2].rpartition('/')
-    file_name = path_parts[2]
+def process_video(video_url: str, title: str):
+    file_name = create_valid_file_name(title)
     download_path = ConfigManager.get_download_path()
     topic = ConfigManager.get_kafka_topic()
-    bootstrap_servers = ConfigManager.get_kafka_bootstrap_servers()
+    bootstrap_servers = ConfigManager.get_kafka_brokers()
     producer = KafkaProducer(bootstrap_servers=bootstrap_servers)
     message = {
         'job_type': 'reddit-download-video-job',
