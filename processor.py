@@ -8,7 +8,7 @@ from util import create_valid_file_name
 
 
 def process_video(video_url: str, title: str):
-    file_name = create_valid_file_name(title)
+    file_name = create_valid_file_name(title) + ".mp4"
     download_path = ConfigManager.get_download_path()
     topic = ConfigManager.get_kafka_topic()
     bootstrap_servers = ConfigManager.get_kafka_brokers()
